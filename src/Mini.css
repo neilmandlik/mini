@@ -1,0 +1,345 @@
+.search{
+    position: relative;
+}
+
+.buttonPos{
+    right: -2.8rem;
+}
+
+.inputPos{
+    left:2.8rem
+}
+
+.giveFont{
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.northsouth{
+    background-color: rgb(174, 169, 169);
+    text-align: center;
+}
+
+.blockvalue{
+    display: inline-block;
+    width: 62%;
+    text-align: center;
+    font-size: 5rem;
+}
+
+#southbutton{    
+    font-size: 5rem;
+    background-color: rgb(174, 169, 169);
+    border: none;
+    left: 0.2rem;
+}
+
+#northbutton{
+    font-size: 5rem;
+    background-color: rgb(174, 169, 169);
+    border: none;
+}
+
+.inputContainer{
+    background-color: rgb(174, 169, 169);
+}
+
+.mainContainer{
+    background-color: rgb(212, 209, 209); 
+    min-height: 100vh;
+    border: 0.1rem solid black;
+}
+
+.floorContainer{
+    border: 0.1rem solid black;
+    border-radius: 1rem;
+    box-shadow: .75rem .50rem .75rem;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 2rem;
+    margin-right: 5rem;
+    height: 7vh;
+    background-color: rgb(239, 238, 238);
+    list-style-type: none;
+}
+
+.assignmentCard{
+    border: 0.1rem solid black;
+    border-radius: 2rem;
+    margin: 2rem;
+    margin-top: 5rem;
+    text-align: center;
+    padding: 3rem;
+}
+
+#addnew{
+    margin-left: 85dvw;
+}
+
+.assignmentdetails{
+    position: fixed;
+    z-index: 1;
+    top: 0rem;
+    left: -101dvw;
+    width: 100dvw;
+    height: 170dvw;
+    background-color: black;
+    transition: all 0.5s ease; 
+}
+
+#details{
+    position: fixed;
+    width: 40dvw;
+    height: 40dvh;
+    top: 35dvh;
+    left: -145dvw;
+    z-index: 2;
+    padding-bottom: 3rem;
+    text-align: center;
+    background-color: white;
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+
+
+#open{
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    width: 5dvw;
+    left: 90dvw;
+    padding: 0.5rem;
+    padding-top: 0.1rem;
+    font-size: 3rem;
+    background-color: black;
+    color: white;
+}
+
+.close{
+    cursor: pointer;
+    top: 35dvh;
+    left:-101dvw;
+    background-color: white;
+    border-radius: 0.2rem;
+    position: fixed;
+    z-index: 3;
+    transition: 0.5s ease;    
+}
+
+.complete{
+    cursor: pointer;
+    top: 65dvh;
+    left:-101dvw;
+    background-color: white;
+    border-radius: 0.2rem;
+    position: fixed;
+    z-index: 3;
+    transition: 0.5s ease;    
+}
+
+.submitnew{
+    display: none;
+}
+
+.filter{
+    position: fixed;
+    height: 5dvh;
+    width: 11dvw;
+    top: 65dvh;
+    left: -90dvw;
+    background-color: white;
+    z-index: 4;
+    transition: all 0.5s ease;
+    opacity: 0.5;
+}
+
+.notFulfill{
+    z-index: 1;
+}
+
+.submitnew:checked~ .filter{
+    left: 45dvw;
+}
+
+.submitnew:checked~ .assignmentdetails{
+    left: 0dvw;
+    opacity: 0.7;
+}
+
+.submitnew:checked~ #details{
+    left: 30dvw;
+}
+
+.submitnew:checked~ label .close{
+    left: 68dvw;  
+}
+
+.submitnew:checked~ label .complete{
+    left: 45dvw;  
+}
+
+.eachSub{
+    border: 0.1rem solid black;
+    padding-bottom: 5rem;
+}
+
+.assignmentCard{
+    border: 0.1rem solid black;
+}
+
+.options{
+    display: none;
+}
+.restrict{
+    width: 5dvw;
+    position: relative;
+    border: 0.1rem solid black;
+}
+#opt{
+    cursor: pointer;
+    width: 5dvw;
+    left:80dvw;
+    position: absolute;
+}
+
+.optionElement{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    display: none;
+    border: 0.1rem solid black;
+    position: absolute;
+    width: 4rem;
+    left: 80dvw;
+    margin-top: 3rem;    
+}
+
+#editAlloc{
+    display: none;
+}
+#edit{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    width: 4rem;
+    border: 0.1rem solid white;
+    left: 80dvw;
+    margin-top: 1.5rem;
+    opacity: 1;
+}
+
+#editAlloc:checked~ .filter{
+    left: 45dvw;
+}
+
+#editAlloc:checked~ .assignmentdetails{
+    left: 0dvw;
+    opacity: 0.7;
+}
+
+#editAlloc:checked~ #details{
+    left: 30dvw;
+}
+
+#editAlloc:checked~ label .close{
+    left: 68dvw;  
+}
+
+#editAlloc:checked~ label .complete{
+    left: 45dvw;  
+}
+
+.options:checked~ .optionElement{
+    display: block;
+}
+.options:checked~ label #edit{
+    display: block;
+}
+
+.reportContainer{
+    padding: 1rem;
+}
+.report{
+    position: absolute;
+    width: 90dvw;
+    padding: 1rem;
+    margin: 1rem;
+    border: 0.1rem solid black;
+    border-radius: 2rem;
+    height: 3dvh;
+}
+
+.reportStudent{
+    position: absolute;
+    width: 90dvw;
+    padding: 1rem;
+    margin: 1rem;
+    border: 0.1rem solid black;
+    border-radius: 2rem;
+    height: 3dvh;
+    top: 20dvh;
+    transition: all 0.5s ease; 
+}
+
+#showFacultyTable{
+    position: absolute;
+    top: 13dvh;
+    left: 90dvw;
+    z-index: 1;
+}
+
+#showStudentTable{
+    position: absolute;
+    top: 25dvh;
+    left: 90dvw;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+#checkTableFaculty{
+    display:none;
+}
+
+#checkTableStudent{
+    display: none;
+}
+
+.facultyTableContainer{
+    overflow: scroll;
+    scrollbar-width: none;
+    position: absolute;
+    margin-top: 1rem;
+    border: 0.1rem solid black;
+    border-radius: 2rem;
+    width: 92dvw;
+    padding: 2rem;
+    top: 20dvh;
+    left: -115dvw;
+    transition:all 0.5s ease;
+}
+
+tr,th,td{
+    border: 0.1rem solid black;
+}
+
+#checkTableFaculty:checked~ .facultyTableContainer{
+    left: 1dvw;
+}
+
+#checkTableFaculty:checked~ .reportStudent{
+    top: 130dvh;
+}
+
+#checkTableFaculty:checked~ #showStudentTable{
+    top: 135dvh;
+}
+
+
+
+
+
+
+
