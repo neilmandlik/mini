@@ -215,6 +215,10 @@
     margin-top: 3rem;    
 }
 
+.lockUnlock{
+    margin-top: 3rem;
+}
+
 #editAlloc{
     display: none;
 }
@@ -259,7 +263,28 @@
     display: block;
 }
 
-.reportContainer{
+
+#submissionContainer{
+    display: flex;
+    border: 0.1rem solid black;
+    width: 21rem;
+    height: 4rem;
+}
+.submissionStat{
+    border: 0.1rem solid black;
+    margin: 0.5rem;
+    width: 6rem;
+    height: 3rem;
+}
+.subNumber{
+    margin: 0.05rem;
+    font-size: 1.5rem;
+}
+
+
+
+
+ .reportContainer{
     padding: 1rem;
 }
 .report{
@@ -285,13 +310,15 @@
 }
 
 #showFacultyTable{
+    cursor: pointer;
     position: absolute;
-    top: 13dvh;
+    top: 15dvh;
     left: 90dvw;
     z-index: 1;
 }
 
 #showStudentTable{
+    cursor: pointer;
     position: absolute;
     top: 25dvh;
     left: 90dvw;
@@ -321,7 +348,7 @@
     transition:all 0.5s ease;
 }
 
-tr,th,td{
+th,tr,td{
     border: 0.1rem solid black;
 }
 
@@ -329,16 +356,31 @@ tr,th,td{
     left: 1dvw;
 }
 
-#checkTableFaculty:checked~ .reportStudent{
-    top: 130dvh;
+
+.decreaseFont{
+    font-size: 0.7rem;
 }
 
-#checkTableFaculty:checked~ #showStudentTable{
-    top: 135dvh;
+.feedbackQuestion{
+    border-radius: 2rem;
+    border: 0.1rem solid black;
+    margin: 1rem;
+    padding: 1rem;
 }
 
+.end{
+    background: none;
+    border: none;
+    font-size: 2rem;
+    position: absolute;
+    right: 2rem;
+}
 
-
+.studentTableHorizontalShow{
+    overflow: scroll;
+    scrollbar-width: none;
+    scroll-behavior: ease;
+}
 
 
 

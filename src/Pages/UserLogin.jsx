@@ -1,14 +1,15 @@
 import { useNavigate} from "react-router-dom"
 import { getData } from "../CRUDdata"
-import { useState} from "react"
+import { useEffect, useState} from "react"
 
 
 function UserLogin(){
-    localStorage.setItem("isLoggedIn",false)
+    localStorage.setItem("isLoggedIn",true)
     const navigate=useNavigate();
     const[name,setName]=useState()
     const[password,setPass]=useState()
     const[res,setRes]=useState("")
+
 
     const handleNameChange=(event)=>{
         setName(event.target.value)

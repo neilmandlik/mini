@@ -26,7 +26,7 @@ function UserLayout(){
     return(
         <>
             Hi {username} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout}>Logout</button> <br /> 
             <Outlet />
             
         </>

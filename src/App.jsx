@@ -9,7 +9,7 @@ import MainLayout from './components/MainLayout'
 import FClass,{fclassLoader} from './Pages/Faculty/FClass'
 import UserLogin from './Pages/UserLogin'
 import Specific from './Pages/Specific'
-import FeatureLayout from './components/FeatureLayout'
+import FeatureLayout from './components/FeatureLayout' 
 import Navigate from './Pages/NavigateContainer'
 import Sample from './Pages/Sample'
 import {createBrowserRouter, createRoutesFromElements, RouterProvider, Route} from 'react-router-dom'
@@ -18,6 +18,13 @@ import FAssignment from './Pages/Faculty/FAssignment'
 import SubmitAssignment from './Pages/Faculty/SubmitAssignment'
 import SAssignmentSubmit,{sAssignmentSubmitLoader} from './Pages/Student/SAssignmentsSubmit'
 import GenerateReport,{generateReportLoader} from './Pages/Admin/GenerateReport'
+import StudentFeedback, {studentFeedBackLoader} from './Pages/Student/StudentFeedback'
+import FeedBackComplete from './Pages/Student/FeedBackComplete'
+import FeedbackReport, {feedbackReportLoader} from './components/FeedbackReport'
+import SelectedReport, {selectedReportLoader} from './Pages/Admin/SelectedReport'
+import FeedbackPreview ,{feedbackPreviewLoader} from './Pages/Admin/FeedbackPreview'
+import AllFacultyReport, {allFacultyReportLoader} from './Pages/Admin/AllFacultyReport'
+import FeedbackRange, { feedbackRangeLoader } from './Pages/Admin/FeedbackRange'
 
 
 const router=createBrowserRouter(createRoutesFromElements(
@@ -29,11 +36,19 @@ const router=createBrowserRouter(createRoutesFromElements(
             <Route path='faculty/:class_name' element={<SubjectAssignment />} loader={subAsgnLoader} />
             <Route path='faculty/:class_name/newassignment' element={<SubmitAssignment />} />
             <Route path={`student`} element={<StudentLayout />} loader={studentLayoutLoader}>
-                <Route index element={<StudentSubject />} loader={studSubjectLoader} />                     
+                <Route index element={<StudentSubject />} loader={studSubjectLoader} />
+                <Route path='feedback' element={<StudentFeedback />} loader={studentFeedBackLoader} />
+                <Route path='feedback/complete' element={<FeedBackComplete />} />        
             </Route>
-            <Route path='student/:sub_name' element={<SAssignmentSubmit/>} loader={sAssignmentSubmitLoader} />
+            <Route path='student/:sub_id/:asgn' element={<SAssignmentSubmit/>} loader={sAssignmentSubmitLoader} />
             <Route path={`admin`} element={<AdminLayout />}>
-                <Route index element={<GenerateReport />} loader={generateReportLoader}/>                        
+                <Route index element={<GenerateReport />} loader={generateReportLoader}/> 
+                <Route path='feedback' element={<FeedbackReport />} loader={feedbackReportLoader}>
+                    <Route path=':range' element={<FeedbackRange/>} loader={feedbackRangeLoader} />
+                    <Route path=':fnum/allfacultyreport' element={<AllFacultyReport />} loader={allFacultyReportLoader} />
+                    <Route path=':fnum/:rec1/:recObjele' element={<SelectedReport />} loader={selectedReportLoader} />
+                </Route>    
+                <Route path='feedbackpreview' element={<FeedbackPreview />} loader={feedbackPreviewLoader}/>              
             </Route>    
         </Route>
         <Route index element={<UserLogin />} />

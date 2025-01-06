@@ -3,7 +3,7 @@ function FacultyLayout(){
     return(
         <>
             <nav>
-                <Link to=".">Classes</Link> &nbsp; &nbsp;
+                <b>Classes</b> &nbsp;
                 <Link to="assignments">Assignments</Link>
             </nav>
             <Outlet />

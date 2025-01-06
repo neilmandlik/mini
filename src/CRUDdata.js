@@ -88,7 +88,7 @@ export async function deleteData(url){
             };
         }
 
-        return null; // Optional success message
+        return await response.json();
     } catch (error) {
         console.log(error);
         throw error;

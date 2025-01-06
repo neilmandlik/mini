@@ -1,7 +1,8 @@
 import { useState,useMemo, useEffect } from "react"
-import { useTable } from 'react-table'
+import { useTable,useFilters } from 'react-table'
 import { getData } from "../../CRUDdata"
 import { useLoaderData } from "react-router-dom"
+import ColumnFilter from "./ColumnFilter"
 
 export async function generateReportLoader(){
     return getData("http://localhost:3002/api/json/gettabledata")
@@ -13,23 +14,53 @@ function GenerateReport(){
     const[togTableFaculty,setTogFaculty]=useState(true)
     const[togTableStudent,setTogStudent]=useState(true)
     const info=useLoaderData()
+    const [tableHeight,setTableHeight]=useState(0)
+
+    // useEffect(()=>{
+    //     console.log(info)
+    // })
+
+    useEffect(()=>{
+        if(!togTableFaculty){
+            setTableHeight(document.getElementById('scaleHeight').offsetHeight)
+            document.getElementById('marginTop').style.top=`${tableHeight+120}px`
+            document.getElementById('showStudentTable').style.top=`${tableHeight+150}px`;
+            document.getElementById('marginTop').style.transition="none"
+            document.getElementById('showStudentTable').style.transition="none"
+
+        }
+        else{
+            document.getElementById('marginTop').style.top="20dvh"
+            document.getElementById('marginTop').style.transition="all 0.5s ease"
+            document.getElementById('showStudentTable').style.top="24.5dvh"        
+            document.getElementById('showStudentTable').style.transition="all 0.5s ease"
+        }
+        
+    },[togTableFaculty,<ColumnFilter />,tableHeight])
+
+    
 
     const data=useMemo(()=>info,[])
     const columns=useMemo(()=>[
         {
             Header:"Faculty Name",
-            accessor:"faculty_name"
+            accessor:"faculty_name",
+            Filter: ColumnFilter
         },
         {
             Header: "Assignment 1",
             columns:[
                 {
                     Header:"Scheduled Date",
-                    accessor:`A1.scheduled_date`
+                    accessor:`A1.scheduled_date`,
+                    Filter: ColumnFilter,
+                    disableFilters: true
                 },
                 {
                     Header:"Allocation Date",
-                    accessor:"A1.allocation_date"
+                    accessor:"A1.allocation_date",
+                    Filter: ColumnFilter,
+                    disableFilters: true
                 }
             ]
         },
@@ -38,11 +69,15 @@ function GenerateReport(){
             columns:[
                 {
                     Header:"Scheduled Date",
-                    accessor:`A2.scheduled_date`
+                    accessor:`A2.scheduled_date`,
+                    Filter: ColumnFilter,
+                    disableFilters: true
                 },
                 {
                     Header:"Allocation Date",
-                    accessor:"A2.allocation_date"
+                    accessor:"A2.allocation_date",
+                    Filter: ColumnFilter,
+                    disableFilters: true
                 }
             ]
         },
@@ -51,23 +86,33 @@ function GenerateReport(){
             columns:[
                 {
                     Header:"Scheduled Date",
-                    accessor:`A3.scheduled_date`
+                    accessor:`A3.scheduled_date`,
+                    Filter: ColumnFilter,
+                    disableFilters: true
                 },
                 {
                     Header:"Allocation Date",
-                    accessor:"A3.allocation_date"
+                    accessor:"A3.allocation_date",
+                    Filter: ColumnFilter,
+                    disableFilters: true
                 }
             ]
         },
         {
             Header:"Subject Name",
-            accessor:"subject_name"
+            accessor:"subject_name",
+            Filter: ColumnFilter
         },
-        
-        
+        {
+            Header:"Subject Type",
+            accessor:"subject_type",
+            Filter: ColumnFilter,
+            disableFilters: true
+        },
         {
             Header:"Class Name",
-            accessor:"class_name"
+            accessor:"class_name",
+            Filter: ColumnFilter
         }
     ],[])
 
@@ -85,7 +130,7 @@ function GenerateReport(){
         headerGroups,
         rows,
         prepareRow,
-    }=useTable({columns,data})
+    }=useTable({columns,data},useFilters)
 
     return(
         <div className="reportContainer">
@@ -99,7 +144,7 @@ function GenerateReport(){
             <div className="report faculty">
                 Faculty
             </div>
-            <div className="facultyTableContainer"> 
+            <div className="facultyTableContainer" id="scaleHeight"> 
                 <table className="facultyTable" {...getTableProps()}>
                     <thead>
                         {headerGroups.map((hG)=>
@@ -107,6 +152,7 @@ function GenerateReport(){
                             {hG.headers.map((col)=>
                                 <th {...col.getHeaderProps()}>
                                     {col.render("Header")}
+                                    <div>{col.canFilter?col.render('Filter'):null}</div>
                                 </th>
                             )}
                             
@@ -135,7 +181,7 @@ function GenerateReport(){
                     {togTableStudent?"Show":"Hide"}
                 </div>
             </label>        
-            <div className="reportStudent">
+            <div className="reportStudent" id="marginTop">
                  Students
             </div>
         </div> 
