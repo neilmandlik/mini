@@ -30,17 +30,7 @@ function FeedbackReport(){
     const navigate=useNavigate()
     const prevData=useLocation()
 
-    useEffect(()=>{
-        if(prevData.state){
-            setRange(!isInRange)
-            document.getElementById('academicYearList').value=prevData.state.fId
-            prevData.state.navTo?handleFacultyChange():handleClassChange()
-            prevData.state=null
-        }
-        if(faculty==="" && fclass==="" && tot===0){
-            navigate(`.`)
-        }
-    },[faculty,fclass,prevData.state])
+    
 
     const handleFacultyChange=(event)=>{
         let fac=""
