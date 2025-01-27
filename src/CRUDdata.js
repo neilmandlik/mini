@@ -94,3 +94,39 @@ export async function deleteData(url){
         throw error;
     }
 }
+
+export async function postFile(toPost,url){
+    if(!toPost){
+        console.log("Empty Parameter")
+        return null
+    }
+    try{
+        const formData=new FormData()
+        for(const key in toPost){
+            if(Array.isArray(toPost[key])){
+                toPost[key].forEach(file=>{
+                    formData.append(key,file)
+                })
+            }
+            else{
+                formData.append(key,toPost[key])
+            }
+        }
+        const post=await fetch(url,{
+            method: "POST",
+            body: formData
+        })
+
+        const data=await post.json()
+        if(!post.ok){
+            throw{
+                message:"Error while Uploading File"
+            }
+        }
+        return data
+    }
+    catch(err){
+        console.log(err)
+        throw err
+    }
+}

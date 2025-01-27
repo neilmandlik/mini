@@ -74,7 +74,7 @@ function StudentFeedback(){
                 )}
                 <button disabled={curqeust.current===0}onClick={handlePrevChange}>Previous</button> &nbsp;
                 <button disabled={curqeust.current===info.qlength-1} onClick={handleNextChange}>Next</button>
-                <button disabled={info.faculties.length*info.qlength!==Object.keys(selected).length} onClick={handleSubmitFeedback}>Submit</button>
+                <button disabled={info.faculties.length*info.qlength!==Object.keys(selected).length} style={{"display": "none"}} onClick={handleSubmitFeedback}>Submit</button>
                 </>
             }
         </>

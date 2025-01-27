@@ -25,6 +25,7 @@ import SelectedReport, {selectedReportLoader} from './Pages/Admin/SelectedReport
 import FeedbackPreview ,{feedbackPreviewLoader} from './Pages/Admin/FeedbackPreview'
 import AllFacultyReport, {allFacultyReportLoader} from './Pages/Admin/AllFacultyReport'
 import FeedbackRange, { feedbackRangeLoader } from './Pages/Admin/FeedbackRange'
+import SemesterRegistration from './Pages/Admin/SemesterRegistration'
 
 
 const router=createBrowserRouter(createRoutesFromElements(
@@ -42,7 +43,8 @@ const router=createBrowserRouter(createRoutesFromElements(
             </Route>
             <Route path='student/:sub_id/:asgn' element={<SAssignmentSubmit/>} loader={sAssignmentSubmitLoader} />
             <Route path={`admin`} element={<AdminLayout />}>
-                <Route index element={<GenerateReport />} loader={generateReportLoader}/> 
+                <Route index element={<GenerateReport />} loader={generateReportLoader}/>
+                <Route path='registration' element={<SemesterRegistration />} />  
                 <Route path='feedback' element={<FeedbackReport />} loader={feedbackReportLoader}>
                     <Route path=':range' element={<FeedbackRange/>} loader={feedbackRangeLoader} />
                     <Route path=':fnum/allfacultyreport' element={<AllFacultyReport />} loader={allFacultyReportLoader} />

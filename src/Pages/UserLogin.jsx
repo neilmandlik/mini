@@ -25,14 +25,17 @@ function UserLogin(){
         setRes(toCheck.message)       
         if(toCheck.status===200){
             localStorage.setItem("isLoggedIn",true)
-            navigate(`user/${name}/${toCheck.desg}`,{replace: true})
+            navigate(`user/${name}/${toCheck.desg}`)
         }             
     }
     return(
         <>
-        <input type="text" name="username" value={name} onChange={handleNameChange}/>
-        <input type="text" name="password" value={password} onChange={handlePassChange}/>
-        <button onClick={handleClick}>Submit</button> <br />
+            <label htmlFor="username">Username: </label>
+            <input type="text" id="username" name="username" value={name} onChange={handleNameChange}/> <br />
+            <label htmlFor="password">Password: </label>
+            <input type="password" id="password" name="password" value={password} onChange={handlePassChange}/> <br />
+            <button onClick={handleClick}>Submit</button> <br />
+
         {res}
             
         </>
