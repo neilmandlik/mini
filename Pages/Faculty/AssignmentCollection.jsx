@@ -1,4 +1,4 @@
-import { NavLink, useLoaderData, useParams } from "react-router-dom"
+import {Link, NavLink, useLoaderData, useParams } from "react-router-dom"
 import AssignmentCard from "./AssignmentCard"
 import { useState, useRef, useEffect } from "react"
 import { deleteData, getData, putData } from "../../CRUDdata"
@@ -9,8 +9,6 @@ export async function subAsgnLoader({params}){
 }
 
 function SubjectAssignment(){  
-
-
     
     const{username,class_name}=useParams()
     const[inf]=useState(useLoaderData())
@@ -83,15 +81,18 @@ function SubjectAssignment(){
                                     <p className="subNumber">{a.onTime}</p>
                                     <p className="subNumber decreaseFont">On time</p>
                                 </div>
+                            
                                 <div className="submissionStat" id="afterTime">
                                     <p className="subNumber">{a.lateSubmit}</p>
                                     <p className="subNumber decreaseFont">Late Submission</p>
                                 </div>
+                            
                                 <div className="submissionStat" id="notSubmit">
-                                <p className="subNumber">{a.notSubmit}</p>
-                                <p className="subNumber decreaseFont">Not Submitted</p>                                    
-                                </div>
+                                    <p className="subNumber">{a.notSubmit}</p>
+                                    <p className="subNumber decreaseFont">Not Submitted</p>                                    
+                                </div> 
                             </div>
+                            <Link style={{"display": a.isLocked==="Locked"?"none":null}} to={`${a.f_assignment_id}/gradesubmission`}><p>Grade Submissions</p></Link>
                         </div>
                     )
                     }
