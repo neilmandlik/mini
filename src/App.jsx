@@ -26,33 +26,42 @@ import FeedbackPreview ,{feedbackPreviewLoader} from './Pages/Admin/FeedbackPrev
 import AllFacultyReport, {allFacultyReportLoader} from './Pages/Admin/AllFacultyReport'
 import FeedbackRange, { feedbackRangeLoader } from './Pages/Admin/FeedbackRange'
 import SemesterRegistration from './Pages/Admin/SemesterRegistration'
+import GradeSubmission, { gradeSubmissionLoader } from './components/GradeSubmission'
+import SpecStudentAssignment from './Pages/Faculty/SpecificStudentAssignment'
+import FSubject, { fsubjectLoader } from './Pages/Faculty/FSubject'
 
 
 const router=createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<MainLayout/>}>
-        <Route path={'user/:username'} element={<UserLayout />} loader={userLayoutLoader}>    
-            <Route path={`faculty`} element={<FacultyLayout />}>
-                <Route index element={<FClass />} loader={fclassLoader} />                        
-            </Route>    
+        <Route path={`user/:username`} element={<FacultyLayout />}>
+            <Route path='faculty' element={<FClass />} loader={fclassLoader}>    
+                <Route path=':class_name' element={<FSubject/>} loader={fsubjectLoader} >
+                    <Route path=':subName' element={<SubjectAssignment />} loader={subAsgnLoader} />
+                </Route>
+            </Route>  
             <Route path='faculty/:class_name' element={<SubjectAssignment />} loader={subAsgnLoader} />
             <Route path='faculty/:class_name/newassignment' element={<SubmitAssignment />} />
-            <Route path={`student`} element={<StudentLayout />} loader={studentLayoutLoader}>
-                <Route index element={<StudentSubject />} loader={studSubjectLoader} />
-                <Route path='feedback' element={<StudentFeedback />} loader={studentFeedBackLoader} />
-                <Route path='feedback/complete' element={<FeedBackComplete />} />        
-            </Route>
-            <Route path='student/:sub_id/:asgn' element={<SAssignmentSubmit/>} loader={sAssignmentSubmitLoader} />
-            <Route path={`admin`} element={<AdminLayout />}>
-                <Route index element={<GenerateReport />} loader={generateReportLoader}/>
-                <Route path='registration' element={<SemesterRegistration />} />  
-                <Route path='feedback' element={<FeedbackReport />} loader={feedbackReportLoader}>
-                    <Route path=':range' element={<FeedbackRange/>} loader={feedbackRangeLoader} />
-                    <Route path=':fnum/allfacultyreport' element={<AllFacultyReport />} loader={allFacultyReportLoader} />
-                    <Route path=':fnum/:rec1/:recObjele' element={<SelectedReport />} loader={selectedReportLoader} />
-                </Route>    
-                <Route path='feedbackpreview' element={<FeedbackPreview />} loader={feedbackPreviewLoader}/>              
-            </Route>    
+            <Route path='faculty/:class_name/:subName/:fAsgnId/gradesubmission' element={<GradeSubmission />} loader={gradeSubmissionLoader}>
+                <Route path=':specStudent' element={<SpecStudentAssignment/>} />
+            </Route>          
+        </Route>    
+        
+        <Route path={`user/:username/student`} element={<StudentLayout />} loader={studentLayoutLoader}>
+            <Route index element={<StudentSubject />} loader={studSubjectLoader} />
+            <Route path='feedback' element={<StudentFeedback />} loader={studentFeedBackLoader} />
+            <Route path='feedback/complete' element={<FeedBackComplete />} /> 
+            <Route path=':sub_id/:asgn' element={<SAssignmentSubmit/>} loader={sAssignmentSubmitLoader} />       
         </Route>
+        <Route path={`user/:username/admin`} element={<AdminLayout />}>
+            <Route index element={<GenerateReport />} loader={generateReportLoader}/>
+            <Route path='registration' element={<SemesterRegistration />} />  
+            <Route path='feedback' element={<FeedbackReport />} loader={feedbackReportLoader}>
+                <Route path=':range' element={<FeedbackRange/>} loader={feedbackRangeLoader} />
+                <Route path=':fnum/allfacultyreport' element={<AllFacultyReport />} loader={allFacultyReportLoader} />
+                <Route path=':fnum/:rec1/:recObjele' element={<SelectedReport />} loader={selectedReportLoader} />
+            </Route>    
+            <Route path='feedbackpreview' element={<FeedbackPreview />} loader={feedbackPreviewLoader}/>              
+        </Route>    
         <Route index element={<UserLogin />} />
         <Route path={`feature`} element={<FeatureLayout />}>
             <Route index element={<Navigate />} />

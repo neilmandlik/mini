@@ -30,14 +30,23 @@ function UserLogin(){
     }
     return(
         <>
-            <label htmlFor="username">Username: </label>
-            <input type="text" id="username" name="username" value={name} onChange={handleNameChange}/> <br />
-            <label htmlFor="password">Password: </label>
-            <input type="password" id="password" name="password" value={password} onChange={handlePassChange}/> <br />
-            <button onClick={handleClick}>Submit</button> <br />
-
-        {res}
-            
+            <div class="container-login">
+                <div class="login">
+                    <div class="trial">
+                        <h2>Welcome Back</h2>
+                        <div className="dabba username ">                    
+                            <label htmlFor="username">Username: </label>
+                            <input  type="text" name="Username" id="username" placeholder="Enrollment no" value={name} onChange={handleNameChange}/> <br /> <br />
+                        </div>
+                        <div className="dabba password">
+                            <label htmlFor="password">Password: </label>
+                            <input type="password" name="password" id="password" placeholder="Password" value={password} onChange={handlePassChange}/> <br />
+                        </div>
+                        <button class="login-btn" onClick={handleClick}>Login</button> <br />
+                        <p>{res}</p>
+                    </div>
+                </div>
+            </div>           
         </>
     )
 }

@@ -69,32 +69,34 @@ function SAssignmentsSubmit(){
 
     return(
         <>
-            <br />
-            <Link to='../..' relative="path">&larr;</Link>
-            {!isDate?
-            <>
-                <section>
-                    <input type="date" value={submissionDate} onChange={handleSubmissionDate}/>
-                    {dateInfo.submDate==="Not Submitted"?    
-                    <>
-                        <input type="file" onChange={handleFileChange}/> <br />    
-                        <button onClick={()=>handleExecuteSubmission(submissionDate)}>Submit</button>
-                    </>      
-                    :
-                    <>
-                        <br /><a href={`/${dateInfo.fileName}`} target="_blank">View Submitted File</a> &nbsp;&nbsp;&nbsp;
-                        <button onClick={()=>handleUnsubmitAssignment()}>Unsubmit</button>
-                    </>
-                    }
-                </section>
-            </>
-            :
-            <>
-                <section>
-                    <p>The Assignment hasn't been allocated yet</p>
-                </section>
-            </>
-            }
+            <div className="content">
+                <br />
+                <Link to='../..' relative="path">&larr;</Link>
+                {!isDate?
+                <>
+                    <section>
+                        <input type="date" value={submissionDate} onChange={handleSubmissionDate}/> &nbsp; &nbsp;
+                        {dateInfo.submDate==="Not Submitted"?    
+                        <>
+                            <input type="file" onChange={handleFileChange}/> <br />  <br />  
+                            <button className="buttons" onClick={()=>handleExecuteSubmission(submissionDate)}>Submit</button>
+                        </>      
+                        :
+                        <>
+                            <br /><a href={`/${dateInfo.fileName}`} target="_blank">View Submitted File</a> &nbsp;&nbsp;&nbsp;
+                            <button onClick={()=>handleUnsubmitAssignment()}>Unsubmit</button>
+                        </>
+                        }
+                    </section>
+                </>
+                :
+                <>
+                    <section>
+                        <p>The Assignment hasn't been allocated yet</p>
+                    </section>
+                </>
+                }
+            </div>
 
         </>
     )

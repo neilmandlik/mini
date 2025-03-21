@@ -1,6 +1,7 @@
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useNavigate } from "react-router-dom"
 import { getData } from "../../CRUDdata"
-import { Link } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
+import { useEffect } from "react"
 
 export async function fclassLoader({params}){
     const {username}=params
@@ -10,17 +11,35 @@ export async function fclassLoader({params}){
 function FClass (){
 
     const classes=useLoaderData()
+    const navigate=useNavigate()
+
+    const activeStyle={
+        color: 'red',
+        fontWeight: 'bold',
+        textDecoration: 'none'
+    }
+
+    useEffect(()=>{
+        navigate(`${classes[0].class_name}`)
+    },[])
+
     return (
         <>
-            {classes.map((cl,i)=>
-            <div  key={i}>
-                <Link to={`${cl.class_name}`}>
-                    <div>
-                        {cl.class_name}
-                    </div>
-                </Link> <br />
+            <div className="faculty-layout-content">
+                <div className="class-navigation">
+                    {classes.map((cl,i)=>
+                        <nav key={i}>
+                            <div className="class-name">
+                                <NavLink to={`${cl.class_name}`} style={({isActive})=>isActive?activeStyle:{textDecoration:'none'}}>
+                                        {cl.class_name}
+                                </NavLink>
+                            </div>
+                        </nav>
+                    )}   
+                </div>
+                
+                <Outlet />  
             </div>
-            )}                
         </>
     )
 }

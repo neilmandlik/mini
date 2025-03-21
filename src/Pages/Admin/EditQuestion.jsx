@@ -25,8 +25,8 @@ function EditQuestion({id,sendVal}){
     }
     return(
         <>
-            <input type="text" onChange={handleEditChange} />
-            <button onClick={handleClick}>Submit</button>
+            <input type="text" placeholder="Enter the question " onChange={handleEditChange} />
+            <button className="buttons submit" onClick={handleClick}>Submit</button>
         </>
     )
 }

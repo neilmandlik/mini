@@ -103,38 +103,64 @@ function FeedbackPreview(){
     }
     return(
         <>
-            <br />
-            {isLaunched==='D'?
-            <>
-                <label htmlFor="feedbackYear">Enter Academic Year: </label>
-                <input type="text" id="feedbackYear" value={year} placeholder="Eg: 2024-25" onChange={handleYearChange}/> <br />
-                <label htmlFor="feedbackSemester" value={semester}>Enter Semester: </label>
-                <input type="number" id="feedbackSemester" onChange={handleSemesterChange}/> <br />
-                <label htmlFor="formNumberForSemester" value={formNumberForSemester} >Enter Form Number for this Semester: </label>
-                <input type="number" id="formNumberForSemester" onChange={handleFormNumberChange}/> <br />
-                <button onClick={handleNewFeedbackForm}>Create New Feedback Form</button>
-            </>
-            :
-            <>
-                <button onClick={()=>handleFeedbackFormState(isLaunched!=='Y')}>{launchOrTerm}</button>
-                <button disabled={isLaunched==="Y"} onClick={handleAddQuestion} className="end">+</button> 
-                <br />
-                <AddQuestion isClicked={isC} id={info[info.length-1]['question_id']} getClicked={handleSetFalse} fnum={formNumber}/>
-                <br />            
-            </>
-            }
-            
-            {info.map((ele,ind)=>
+            <div class="box content">
+                {isLaunched==='D'?
                 <>
-                    <div className="feedbackQuestion" key={ind}>
-                        <p>{ind+1}) {ele.question_desc}</p>
-                        <button disabled={isLaunched==="Y"} onClick={()=>handleEditQuestion(ele.question_id,ele.question_desc,ind)}>Edit</button>
-                        <button disabled={isLaunched==="Y"} onClick={()=>handleDeleteQuestion(ele.question_id)}>Delete</button>
+                    <div class="feedback-configure">
+                        <div class="configure">
+                            <label htmlFor="feedbackYear">Enter Academic Year: </label>
+                            <input type="text" id="feedbackYear" value={year} placeholder="Eg: 2024-25" onChange={handleYearChange}/> <br />
+                        </div>
+                        <div class="configure">
+                            <label htmlFor="feedbackSemester" value={semester}>Enter Semester: </label>
+                            <input type="number" id="feedbackSemester" onChange={handleSemesterChange}/> <br />
+                        </div>
+                        <div class="configure">
+                            <label htmlFor="formNumberForSemester" value={formNumberForSemester} >Enter Form Number for this Semester: </label>
+                            <input type="number" id="formNumberForSemester" onChange={handleFormNumberChange}/> <br />
+                        </div>
                     </div>
-
-                    {isEditClicked && ind===indOfQuestion.current?<EditQuestion isClicked={isEditClicked} id={qid.current} description={qdsc} sendVal={handleSetEdit}/>:""}
+                    <button className="buttons create" onClick={handleNewFeedbackForm}>Create New Feedback Form</button>
                 </>
-            )}
+                :
+                <>
+                    <button className= "buttons" onClick={()=>handleFeedbackFormState(isLaunched!=='Y')}>{launchOrTerm}</button>
+                    <br />
+                    <div className="add-question">
+                        <AddQuestion isClicked={isC} id={info[info.length-1]['question_id']} getClicked={handleSetFalse} fnum={formNumber}/>
+                    </div>
+                        
+                    <br />            
+                </>
+                }
+                <div class="questions-preview">
+                    <button disabled={isLaunched==="Y"} class="buttons add" onClick={handleAddQuestion}>Add</button>
+                    <div class="questions">
+                
+                        {info.map((ele,ind)=>
+                            <>
+                                <div class="question-panel">
+                                    <div class="question">
+                                        <div id="q-no">
+                                            <section id="q">Q.</section>
+                                            <section id="no">{ind+1}</section>
+                                        </div>
+                                        <section className="feedbackPreviewQuestion">{ele.question_desc}</section>
+                                    </div>
+                                    <div class="edit-controls">
+                                        <button class="buttons edit" disabled={isLaunched==="Y"} onClick={()=>handleEditQuestion(ele.question_id,ele.question_desc,ind)}>Edit</button>
+                                        <button class="buttons delete" disabled={isLaunched==="Y"} onClick={()=>handleDeleteQuestion(ele.question_id)}>Delete</button>
+                                    </div>
+                                </div>
+
+                                <div className="edit-questions">
+                                    {isEditClicked && ind===indOfQuestion.current?<EditQuestion isClicked={isEditClicked} id={qid.current} description={qdsc} sendVal={handleSetEdit}/>:""}
+                                </div>
+                            </>
+                        )}
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

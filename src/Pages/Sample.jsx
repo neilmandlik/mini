@@ -49,8 +49,9 @@ function Sample(){
             {/* <input onChange={handleFileDownload} type="file"/> */}
             <input onChange={handleFile2Download} type="file"/>
             <button onClick={uploadFile}>Upload</button>
-            <a href="/AIML Assignment 1.pdf" target="_blank">View File</a> <br />
-            <button onClick={handleDeleteFile}>Delete file</button>                 
+            <a href={`/Semester 5 fees 2.pdf`} target="_blank">View File</a> <br />
+            <button onClick={handleDeleteFile}>Delete file</button>     <br />
+            <iframe src={`/Semester 5 fees 2.pdf`}  width="100%" height="600px"></iframe>            
         </>
     )
 }

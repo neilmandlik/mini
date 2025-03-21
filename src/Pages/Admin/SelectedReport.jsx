@@ -15,7 +15,17 @@ function SelectedReport(){
     const{fnum,recObjele,rec1}=useParams()
     const conf=rec1[rec1.length-1]
     const info=useLoaderData()
-  
+
+    useEffect(()=>{
+        if(recObjele==='0'){
+            console.log(Object.keys (info[0]).filter(
+                ele=>ele.includes('Question')).map(
+                    ele=>({
+                        Header: ele,
+                        accessor: ele
+                    })))
+        }
+    },[info])  
 
     const data=useMemo(()=>info,[info])
     const columns=useMemo(()=>
@@ -32,47 +42,12 @@ function SelectedReport(){
         {
             Header:'Subject Name',
             accessor:'subject_name'
-        }]).concat([
-        ,{
-            Header: 'Question 1',
-            accessor:'Question 1'
-        },
-        {
-            Header: 'Question 2',
-            accessor:'Question 2'
-        },
-        {
-            Header: 'Question 3',
-            accessor:'Question 3'
-        },
-        {
-            Header: 'Question 4',
-            accessor:'Question 4'
-        },
-        {
-            Header: 'Question 5',
-            accessor:'Question 5'
-        },
-        {
-            Header: 'Question 6',
-            accessor:'Question 6'
-        },
-        {
-            Header: 'Question 7',
-            accessor:'Question 7'
-        },
-        {
-            Header: 'Question 8',
-            accessor:'Question 8'
-        },
-        {
-            Header: 'Question 9',
-            accessor:'Question 9'
-        },
-        {
-            Header: 'Question 10',
-            accessor:'Question 10'
-        },
+        }]).concat(Object.keys (info[0]).filter(
+            ele=>ele.includes('Question')).map(
+                ele=>({
+                    Header: ele,
+                    accessor: ele
+                }))).concat([
         {
             Header: 'Final Result',
             accessor:'final_res'

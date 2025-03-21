@@ -4,6 +4,10 @@ import { postData } from "../../CRUDdata"
 function AddQuestion({isClicked,id,getClicked,fnum}){
     const[question,setQuestion]=useState("")
 
+    useEffect(()=>{
+        console.log("Hello")
+    })
+
     const handleQuestionChange=(event)=>{
         setQuestion(event.target.value)
 
@@ -13,10 +17,10 @@ function AddQuestion({isClicked,id,getClicked,fnum}){
         if(question!==""){
             const toPost={
                 question_desc: question,
-                question_id: `question${parseInt(id.slice(id.indexOf('n')+1))+1}f${fnum}`
+                question_id: `question${parseInt(id.slice(id.indexOf('n')+1))+1}`,
+                ffId: fnum
             }
             setQuestion("")
-            console.log(parseInt(id.slice(id.indexOf('n')+1)))
             const newQuestionList=await postData(toPost,"http://localhost:3002/api/json/postfeedbackquestion")
             getClicked(false,newQuestionList)
         }
@@ -25,9 +29,9 @@ function AddQuestion({isClicked,id,getClicked,fnum}){
     if(isClicked){
         return(
             <>
-                <label htmlFor="addQuestion">Enter Question: </label>
-                <input type="text" id="addQuestion" value={question} onChange={handleQuestionChange} />
-                <button onClick={handleOnClick}>Submit</button>
+                <label htmlFor="write-question">Enter Question: </label>
+                <input type="text" id="write-question" placeholder="Type your question here" value={question} onChange={handleQuestionChange} />
+                <button className="buttons submit-for-add-question" onClick={handleOnClick}>Submit</button>
             </>
         )
 

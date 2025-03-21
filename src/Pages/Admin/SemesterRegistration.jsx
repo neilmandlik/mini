@@ -24,17 +24,27 @@ function SemesterRegistration(){
 
     return(
         <>
-            <p><i>Enter <b>csv</b> files for the following </i></p>
-            <label htmlFor="facultyFile">Faculty Information: </label>
-            <input type="file" id="facultyFile" onChange={handleFacultyFileChange}/> <br /> <br />
-            <label htmlFor="studentFile">Student Information: </label>
-            <input type="file" id="studentFile" onChange={handleStudentFileChange}/> <br /> <br />
-            <label htmlFor="classFile">Class Information: </label>
-            <input type="file" id="classFile" onChange={handleClassFileChange}/> <br /> <br />
-            <label htmlFor="subjectFile">Subject Information: </label>
-            <input type="file" id="subjectFile" onChange={handleSubjectFileChange}/> <br /> <br />
-            <label htmlFor="mergeFile">Load Distribution Information: </label>
-            <input type="file" id="mergeFile" onChange={handleMergeFileChange}/> <br /> <br />
+            Upload csv files for the following
+            <div className="upload-csv">
+                <label htmlFor="facultyFile">Faculty Information: </label>
+                <input type="file" id="facultyFile" onChange={handleFacultyFileChange}/> <br /> <br />
+            </div>
+            <div className="upload-csv">
+                <label htmlFor="studentFile">Student Information: </label>
+                <input type="file" id="studentFile" onChange={handleStudentFileChange}/> <br /> <br />
+            </div>
+            <div className="upload-csv">
+                <label htmlFor="classFile">Class Information: </label>
+                <input type="file" id="classFile" onChange={handleClassFileChange}/> <br /> <br />
+            </div>
+            <div className="upload-csv">
+                <label htmlFor="subjectFile">Subject Information: </label>
+                <input type="file" id="subjectFile" onChange={handleSubjectFileChange}/> <br /> <br />
+            </div>
+            <div className="upload-csv">
+                <label htmlFor="mergeFile">Load Distribution Information: </label>
+                <input type="file" id="mergeFile" onChange={handleMergeFileChange}/> <br /> <br />
+            </div>
             <button onClick={handleFileUpload}>Upload</button>            
         </>
     )

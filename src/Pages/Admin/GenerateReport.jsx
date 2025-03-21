@@ -137,11 +137,11 @@ function GenerateReport(){
             
             <input type="checkbox" id="checkTableFaculty" />
             <label htmlFor="checkTableFaculty" id="showFacultyTable">
-                    <div onClick={handleShowTogFac}>
+                    <div class="buttons margin" onClick={handleShowTogFac}>
                         {togTableFaculty?"Show":"Hide"}
                     </div>
             </label>
-            <div className="report faculty">
+            <div className="buttons gap">
                 Faculty
             </div>
             <div className="facultyTableContainer" id="scaleHeight"> 
@@ -175,14 +175,14 @@ function GenerateReport(){
                     </tbody>
                 </table>
             </div>
-            <input type="checkbox" id="checkTableStudent" />
+            {/* <input type="checkbox" id="checkTableStudent" /> */}
             <label id="showStudentTable" htmlFor="checkTableStudent">
                 <div onClick={handleShowTogStud}>
-                    {togTableStudent?"Show":"Hide"}
+                    {/* {togTableStudent?"Show":"Hide"} */}
                 </div>
             </label>        
             <div className="reportStudent" id="marginTop">
-                 Students
+                {/* Student                  */}
             </div>
         </div> 
     )
